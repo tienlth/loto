@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Lô Tô</title>
+</head>
+<body>
+
+    <audio id="bg_audio1" autoplay="autoplay">
+        <source src="./music/backgound_cut.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="bg_audio2" loop="loop">
+        <source src="./music/backgound_loop.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="play">Quay số</div>
+    <div class="auto_container">
+        <input id="auto" class="auto" type="checkbox">  
+        <label for="auto">Tự động quay số</label>
+    </div>
+    <div class="numbers">
+    </div>
+
+    <div class="congnangdacdi">
+        <img src="./20170101-054615-ctt1_1_520x364.jpg" alt="congnangdacdi" width="200" height="100">
+        <button title="Đổi 1 số ngẫu nhiên trên vé (1 lần duy nhất)">Công năng đặc dị></button>
+    </div>
+
+    <script type="module" src="./script.js"></script>
+    <script>
+        var markTicketNumber=[]
+        for(var i=1;i<=45;i++){
+            markTicketNumber[i]=false
+        }
+
+        var ticket
+
+        var numbers = document.querySelector('.numbers')
+        for(var i=1;i<=45;i++){
+            let number = document.createElement('span')
+            number.id='numId_'+i
+            number.classList.add('number')
+
+            do{
+                num=Math.round(Math.random()*89+1)
+            }while(markTicketNumber[num])
+            markTicketNumber[num] = true
+
+            number.innerHTML=num
+            number.onclick=function(){
+                this.classList.toggle('mark')
+            }
+
+            numbers.appendChild(number)
+        }
+    </script>
+</body>
+</html>
